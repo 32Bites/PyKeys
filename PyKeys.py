@@ -164,7 +164,7 @@ def getkeys(imagefile) :
         print(Fore.MAGENTA + "Request Error, outputting Variables:")
         print(Fore.LIGHTBLUE_EX + str(url))
         print(Fore.RED + str(data))
-        print(Fore.BLUE + "\n\nError Type: " + sys.exc_info() + Fore.RESET)
+        print(Fore.BLUE + "\n\nError Type: " + str(sys.exc_info()) + Fore.RESET)
         print("Exiting.")
         exit()
     
