@@ -24,7 +24,7 @@ global identifier
 global buildid
 
 def mainmenu() :
-    validimages = ['AppleLogo', 'RecoveryMode', 'BatteryLow1', 'BatteryLow0', 'BatteryFull', 'BatteryCharging0', 'BatteryCharging1', 'iLLB', 'iBoot', 'iBEC', 'iBSS', 'DeviceTree', 'GlyphPlugin', 'RootFS', 'UpdateRamdisk', 'RestoreRamdisk']
+    validimages = ['AppleLogo', 'RecoveryMode', 'BatteryLow1', 'BatteryLow0', 'BatteryFull', 'BatteryCharging0', 'BatteryCharging1', 'LLB', 'iBoot', 'iBEC', 'iBSS', 'DeviceTree', 'GlyphPlugin', 'RootFS', 'UpdateRamdisk', 'RestoreRamdisk']
 
     menu = ConsoleMenu("PyKeys", "Firmware Key Grabber." )
     #Menu Options
@@ -67,100 +67,104 @@ def getkeys(imagefile) :
     #url = 'https://api.ipsw.me/v4/keys/ipsw/iphone3,3/11D257'
     response = requests.get(url)
     data = json.loads(response.content)
+
+    itemlen = len(data['keys'])
+    #print(itemlen)
     #print(data)
     print("Using URL: " + Fore.LIGHTCYAN_EX + url + Fore.RESET)
 
 
     #Get AppleLogo Number from JSON
     try:
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "AppleLogo" :
                 AppleLogo = i
                 
         #Get LLB Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "LLB" :
                iLLB = i
                
         #Get iBEC Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "iBEC" :
                 iBEC = i
                 
         #Get iBoot Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "iBoot" :
                 iBoot = i
                 
         #Get iBSS Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "iBSS" :
                 iBSS = i
                 
         #Get RecoveryMode Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "RecoveryMode" :
                 RecoveryMode = i
                 
         #Get BatteryLow0 Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "BatteryLow0" :
                 BatteryLow0 = i
                 
         #Get BatteryLow1 Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "BatteryLow1" :
                 BatteryLow1 = i
                 
         #Get BatteryFull Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "BatteryFull" :
                 BatteryFull = i
                 
         #Get BatteryCharging1 Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "BatteryCharging1" :
                 BatteryCharging1 = i
                 
         #Get DeviceTree Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "DeviceTree" :
                 DeviceTree = i
                 
         #Get BatteryCharging0 Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "BatteryCharging0" :
                 BatteryCharging0 = i
                 
         #Get KernelCache Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "KernelCache" :
                 KernelCache = i
                 
         #Get GlyphPlugin Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "GlyphPlugin" :
                 GlyphPlugin = i
                 
         #Get UpdateRamdisk Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "UpdateRamdisk" :
                 UpdateRamdisk = i
                 
         #Get RestoreRamdisk Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "RestoreRamdisk" :
                 RestoreRamdisk = i
                 
         #Get RootFS Number from JSON
-        for i in range(0, 19, 1) :
+        for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "RootFS" :
                 RootFS = i
                 
     except:
         print(Fore.MAGENTA + "Request Error, outputting Variables:")
-        print(Fore.RED + str(url))
-        print(Fore.RED + str(data) + Fore.RESET)
+        print(Fore.LIGHTBLUE_EX + str(url))
+        print(Fore.RED + str(data))
+        print(Fore.BLUE + "\n\nError Type: " + sys.exc_info() + Fore.RESET)
         print("Exiting.")
         exit()
     
