@@ -65,10 +65,30 @@ def mainmenu() :
 def getkeys(imagefile) :
     url = 'https://api.ipsw.me/v4/keys/ipsw/' + identifier + '/' + buildid
     #url = 'https://api.ipsw.me/v4/keys/ipsw/iphone3,3/11D257'
-    response = requests.get(url)
-    data = json.loads(response.content)
 
-    itemlen = len(data['keys'])
+    response = requests.get(url)
+
+    try:
+        data = json.loads(response.content)
+
+    #This is incase it fails to decode the json if the json is invalid.
+    except json.decoder.JSONDecodeError: 
+        KeyErrorFunc()
+
+    itemlen = 0
+    try:
+        itemlen = len(data['keys'])
+    except KeyError:
+        KeyErrorFunc()
+
+
+
+    except:
+        print(Fore.RED + "Unkown Error Occured.")
+        print("\n\nError Type: " + Fore.LIGHTRED_EX + str(sys.exc_info()) + Fore.RESET)
+        print("Exiting.")
+        exit()
+
     #print(itemlen)
     #print(data)
     print("Using URL: " + Fore.LIGHTCYAN_EX + url + Fore.RESET)
@@ -159,12 +179,15 @@ def getkeys(imagefile) :
         for i in range(0, itemlen, 1) :
             if data['keys'][i]['image'] == "RootFS" :
                 RootFS = i
-                
+    
+    except TypeError: 
+        KeyErrorFunc()
+
     except:
-        print(Fore.MAGENTA + "Request Error, outputting Variables:")
+        print(Fore.MAGENTA + "Unknown Error, outputting Variables:")
         print(Fore.LIGHTBLUE_EX + str(url))
         print(Fore.RED + str(data))
-        print(Fore.BLUE + "\n\nError Type: " + str(sys.exc_info()) + Fore.RESET)
+        print(Fore.BLUE + "\n\nError Type: " + Fore.LIGHTRED_EX + str(sys.exc_info()) + Fore.RESET)
         print("Exiting.")
         exit()
     
@@ -237,15 +260,32 @@ def getkeys(imagefile) :
 
     
 
+def KeyErrorFunc() :
+    print(Fore.RED + "Error Processing:")
+    print(Fore.MAGENTA + "The information provided is invalid.")
+    print("Look at them below:")
+
+
+        #Checks to see if any of the vars are empty, if so output a message and exit.
+    if (len(identifier) == 0 and len(buildid) == 0) :
+        print("Some of the input you provided is empty:")
+        print(Fore.BLUE + "Identifier: " + Fore.LIGHTBLUE_EX + identifier)
+        print(Fore.BLUE + "Buildid: " + Fore.LIGHTBLUE_EX + identifier + Fore.RESET)
+        exit()
+
+    print(Fore.BLUE + "Identifier: " + Fore.LIGHTBLUE_EX + identifier)
+    print(Fore.BLUE + "Buildid: " + Fore.LIGHTBLUE_EX + identifier + Fore.RESET)
+    print("Exiting.")
+    exit()
 
 
 
 #Standard Python Stuff
 if __name__ == "__main__" :
     init()
-    idt = input("Device Identifier" + Fore.YELLOW + " ! " + Fore.RESET)
+    idt = input("Device Identifier (For example: iPhone3,3)" + Fore.YELLOW + " ! " + Fore.RESET)
     identifier = idt
-    bdid = input("Build ID" + Fore.YELLOW + " ! " + Fore.RESET)
+    bdid = input("Build ID (For example: 11D257)" + Fore.YELLOW + " ! " + Fore.RESET)
     buildid = bdid
     #print(identifier + " " + buildid)
     mainmenu()
