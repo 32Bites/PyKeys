@@ -1,9 +1,7 @@
 # PyKeys
----
 Python 3.6.7 Firmware Key Grabber
 
 # Usage
----
 ```$ python3 PyKeys.py```
 Enter in the details, then select an option from the selection menu.
 
