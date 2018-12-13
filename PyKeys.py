@@ -6,6 +6,7 @@ import requests
 import time
 import PyKeyModule
 import UpdateCheck
+import zipfile
 from consolemenu import *
 from consolemenu.items import FunctionItem, SubmenuItem, CommandItem
 from colorama import init
@@ -24,6 +25,7 @@ ______________________________________________
 global identifier
 
 global buildid
+
 
 menu = ConsoleMenu("PyKeys", "Firmware Key Grabber.")
 
@@ -49,7 +51,6 @@ def showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm, ibo
 
 
 def mainmenu():
-    UpdateCheck.inititalize()
     validimages = ['AppleLogo', 'RecoveryMode', 'BatteryLow1', 'BatteryLow0', 'BatteryFull', 'BatteryCharging0',
                    'BatteryCharging1', 'LLB', 'iBoot', 'iBEC', 'iBSS', 'DeviceTree', 'GlyphPlugin', 'RootFS', 'UpdateRamdisk', 'RestoreRamdisk']
 
@@ -90,19 +91,31 @@ def mainmenu():
         menu.append_item(updatecheckm)
         showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
                  ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+
     elif (UpdateCheck.gupdate == "true"):
         updatecheckm = FunctionItem(updateStuff[1], UpdateCheck.disableUpdate)
         menu.append_item(updatecheckm)
         showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
                  ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+
+    elif (UpdateCheck.gupdate == "update"):
+        updatecheckm = FunctionItem(updateStuff[1], UpdateCheck.disableUpdate)
+        menu.append_item(updatecheckm)
+        updatedownloadm = FunctionItem(
+            "Download Update", UpdateCheck.downloadUpdate)
+        menu.append_item(updatedownloadm)
+        showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
+                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+
     else:
-        print(UpdateCheck.gupdate)
-        print("oops")
+        showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
+                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
 
 
 # Standard Python Stuff
 if __name__ == "__main__":
     init()
+    UpdateCheck.inititalize()
     UpdateCheck.getLocalVersion()
     idt = input("Device Identifier (For example: iPhone3,3)" +
                 Fore.YELLOW + " ! " + Fore.RESET)
