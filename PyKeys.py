@@ -24,7 +24,7 @@ ______________________________________________
 
 global identifier
 
-global buildid
+global iosversion
 
 
 menu = ConsoleMenu("PyKeys", "Firmware Key Grabber.")
@@ -58,33 +58,33 @@ def mainmenu():
 
     # Menu Options
     applelogom = FunctionItem(validimages[0], PyKeyModule.getkeys, [
-                              validimages[0], identifier, buildid])
+                              validimages[0], identifier, iosversion])
     recoverymodem = FunctionItem(validimages[1], PyKeyModule.getkeys, [
-                                 validimages[1], identifier, buildid])
+                                 validimages[1], identifier, iosversion])
     batlow1m = FunctionItem(validimages[2], PyKeyModule.getkeys, [
-                            validimages[2], identifier, buildid])
+                            validimages[2], identifier, iosversion])
     batlow0m = FunctionItem(validimages[3], PyKeyModule.getkeys, [
-                            validimages[3], identifier, buildid])
+                            validimages[3], identifier, iosversion])
     batchar1m = FunctionItem(validimages[4], PyKeyModule.getkeys, [
-                             validimages[4], identifier, buildid])
+                             validimages[4], identifier, iosversion])
     llbm = FunctionItem(validimages[5], PyKeyModule.getkeys, [
-                        validimages[5], identifier, buildid])
+                        validimages[5], identifier, iosversion])
     ibootm = FunctionItem(validimages[6], PyKeyModule.getkeys, [
-                          validimages[6], identifier, buildid])
+                          validimages[6], identifier, iosversion])
     ibecm = FunctionItem(validimages[7], PyKeyModule.getkeys, [
-                         validimages[7], identifier, buildid])
+                         validimages[7], identifier, iosversion])
     ibssm = FunctionItem(validimages[8], PyKeyModule.getkeys, [
-                         validimages[8], identifier, buildid])
+                         validimages[8], identifier, iosversion])
     devtreem = FunctionItem(validimages[9], PyKeyModule.getkeys, [
-                            validimages[9], identifier, buildid])
+                            validimages[9], identifier, iosversion])
     glyphplugm = FunctionItem(validimages[10], PyKeyModule.getkeys, [
-                              validimages[10], identifier, buildid])
+                              validimages[10], identifier, iosversion])
     rtfsm = FunctionItem(validimages[11], PyKeyModule.getkeys, [
-                         validimages[11], identifier, buildid])
+                         validimages[11], identifier, iosversion])
     updramm = FunctionItem(validimages[12], PyKeyModule.getkeys, [
-                           validimages[12], identifier, buildid])
+                           validimages[12], identifier, iosversion])
     resramm = FunctionItem(validimages[13], PyKeyModule.getkeys, [
-                           validimages[13], identifier, buildid])
+                           validimages[13], identifier, iosversion])
 
     if (UpdateCheck.gupdate == "false"):
         updatecheckm = FunctionItem(updateStuff[0], UpdateCheck.enableUpdate)
@@ -120,8 +120,10 @@ if __name__ == "__main__":
     idt = input("Device Identifier (For example: iPhone3,3)" +
                 Fore.YELLOW + " ! " + Fore.RESET)
     identifier = idt
-    bdid = input("Build ID (For example: 11D257)" +
+    iver = input("iOS Version (For example: 7.1.2)" +
                  Fore.YELLOW + " ! " + Fore.RESET)
-    buildid = bdid
-    #print(identifier + " " + buildid)
+    iosversion = iver
+    print(iosversion)
+    input()
+    #print(identifier + " " + iosversion)
     mainmenu()

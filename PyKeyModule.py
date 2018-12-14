@@ -20,8 +20,13 @@ ______________________________________________
 '''
 
 
-def getkeys(imagefile, identifier, buildid):
-    url = 'https://api.ipsw.me/v4/keys/ipsw/' + identifier + '/' + buildid
+def getkeys(imagefile, identifier, iosversion):
+    urlToGetBuildId = 'https://api.ipsw.me/v3/' + identifier + '/' + iosversion + '/buildid'
+    buildidResponse = requests.get(urlToGetBuildId)
+
+
+    url = 'https://api.ipsw.me/v4/keys/ipsw/' + identifier + '/' + str(buildidResponse.content, 'utf-8')
+    print(str(buildidResponse.content))
     #url = 'https://api.ipsw.me/v4/keys/ipsw/iphone3,3/11D257'
 
     response = requests.get(url)
@@ -31,13 +36,13 @@ def getkeys(imagefile, identifier, buildid):
 
     # This is incase it fails to decode the json if the json is invalid.
     except json.decoder.JSONDecodeError:
-        KeyErrorFunc(identifier, buildid)
+        KeyErrorFunc(identifier, iosversion)
 
     itemlen = 0
     try:
         itemlen = len(data['keys'])
     except KeyError:
-        KeyErrorFunc(identifier, buildid)
+        KeyErrorFunc(identifier, iosversion)
 
     except:
         print(Fore.RED + "Unkown Error Occured.")
@@ -137,7 +142,7 @@ def getkeys(imagefile, identifier, buildid):
                 RootFS = i
 
     except TypeError:
-        KeyErrorFunc(identifier, buildid)
+        KeyErrorFunc(identifier, iosversion)
 
     except:
         print(Fore.MAGENTA + "Unknown Error, outputting Variables:")
@@ -249,23 +254,31 @@ def getkeys(imagefile, identifier, buildid):
         print(Fore.RESET + "Filename: " + Fore.GREEN +
               data['keys'][RootFS]['filename'])
         print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][RootFS]['key'])
+    elif imagefile == "KernelCache":
+        print(Fore.RESET + "Filename: " + Fore.GREEN +
+              data['keys'][KernelCache]['filename'])
+        print(Fore.RESET + "Key: " + Fore.GREEN +
+              data['keys'][KernelCache]['key'])
+        print(Fore.RESET + "IV: " + Fore.GREEN +
+              data['keys'][KernelCache]['iv'])
     exit()
 
 
-def KeyErrorFunc(identifier, buildid):
+def KeyErrorFunc(identifier, iosversion):
     print(Fore.RED + "Error Processing:")
     print(Fore.MAGENTA + "The information provided is invalid.")
     print("Look at them below:")
 
     # Checks to see if any of the vars are empty, if so output a message and exit.
-    if (len(identifier) == 0 and len(buildid) == 0):
+    if (len(identifier) == 0 and len(iosversion) == 0):
         print("Some of the input you provided is empty:")
         print(Fore.BLUE + "Identifier: " + Fore.LIGHTBLUE_EX + identifier)
-        print(Fore.BLUE + "Buildid: " +
+        print(Fore.BLUE + "iOS Version: " +
               Fore.LIGHTBLUE_EX + identifier + Fore.RESET)
         exit()
 
     print(Fore.BLUE + "Identifier: " + Fore.LIGHTBLUE_EX + identifier)
-    print(Fore.BLUE + "Buildid: " + Fore.LIGHTBLUE_EX + identifier + Fore.RESET)
+    print(Fore.BLUE + "iOS Version: " +
+          Fore.LIGHTBLUE_EX + identifier + Fore.RESET)
     print("Exiting.")
     exit()
