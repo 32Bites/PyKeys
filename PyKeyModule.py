@@ -26,7 +26,7 @@ def getkeys(imagefile, identifier, iosversion):
 
 
     url = 'https://api.ipsw.me/v4/keys/ipsw/' + identifier + '/' + str(buildidResponse.content, 'utf-8')
-    print(str(buildidResponse.content))
+    #print(str(buildidResponse.content))
     #url = 'https://api.ipsw.me/v4/keys/ipsw/iphone3,3/11D257'
 
     response = requests.get(url)

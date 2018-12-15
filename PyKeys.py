@@ -124,6 +124,5 @@ if __name__ == "__main__":
                  Fore.YELLOW + " ! " + Fore.RESET)
     iosversion = iver
     print(iosversion)
-    input()
     #print(identifier + " " + iosversion)
     mainmenu()
