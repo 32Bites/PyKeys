@@ -156,111 +156,111 @@ def getkeys(imagefile, identifier, iosversion):
     # Output
     if imagefile == "AppleLogo":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][AppleLogo]['filename'])
+              data['keys'][AppleLogo]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][AppleLogo]['key'])
-        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][AppleLogo]['iv'])
+              data['keys'][AppleLogo]['key'] + Fore.RESET)
+        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][AppleLogo]['iv'] + Fore.RESET)
     elif imagefile == "BatteryFull":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][BatteryFull]['filename'])
+              data['keys'][BatteryFull]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][BatteryFull]['key'])
+              data['keys'][BatteryFull]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][BatteryFull]['iv'])
+              data['keys'][BatteryFull]['iv'] + Fore.RESET)
     elif imagefile == "BatteryCharging0":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][BatteryCharging0]['filename'])
+              data['keys'][BatteryCharging0]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][BatteryCharging0]['key'])
+              data['keys'][BatteryCharging0]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][BatteryCharging0]['iv'])
+              data['keys'][BatteryCharging0]['iv'] + Fore.RESET)
     elif imagefile == "BatteryCharging1":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][BatteryCharging1]['filename'])
+              data['keys'][BatteryCharging1]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][BatteryCharging1]['key'])
+              data['keys'][BatteryCharging1]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][BatteryCharging1]['iv'])
+              data['keys'][BatteryCharging1]['iv'] + Fore.RESET)
     elif imagefile == "BatteryLow0":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][BatteryLow0]['filename'])
+              data['keys'][BatteryLow0]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][BatteryLow0]['key'])
+              data['keys'][BatteryLow0]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][BatteryLow0]['iv'])
+              data['keys'][BatteryLow0]['iv'] + Fore.RESET)
     elif imagefile == "BatteryLow1":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][BatteryLow1]['filename'])
+              data['keys'][BatteryLow1]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][BatteryLow1]['key'])
+              data['keys'][BatteryLow1]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][BatteryLow1]['iv'])
+              data['keys'][BatteryLow1]['iv'] + Fore.RESET)
     elif imagefile == "LLB":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][iLLB]['filename'])
-        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iLLB]['key'])
-        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iLLB]['iv'])
+              data['keys'][iLLB]['filename'] + Fore.RESET)
+        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iLLB]['key'] + Fore.RESET)
+        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iLLB]['iv'] + Fore.RESET)
     elif imagefile == "iBoot":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][iBoot]['filename'])
-        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iBoot]['key'])
-        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iBoot]['iv'])
+              data['keys'][iBoot]['filename'] + Fore.RESET)
+        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iBoot]['key'] + Fore.RESET)
+        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iBoot]['iv'] + Fore.RESET)
     elif imagefile == "iBEC":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][iBEC]['filename'])
-        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iBEC]['key'])
-        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iBEC]['iv'])
+              data['keys'][iBEC]['filename'] + Fore.RESET)
+        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iBEC]['key'] + Fore.RESET)
+        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iBEC]['iv'] + Fore.RESET)
     elif imagefile == "iBSS":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][iBSS]['filename'])
-        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iBSS]['key'])
-        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iBSS]['iv'])
+              data['keys'][iBSS]['filename'] + Fore.RESET)
+        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][iBSS]['key'] + Fore.RESET)
+        print(Fore.RESET + "IV: " + Fore.GREEN + data['keys'][iBSS]['iv'] + Fore.RESET)
     elif imagefile == "DeviceTree":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][DeviceTree]['filename'])
+              data['keys'][DeviceTree]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][DeviceTree]['key'])
+              data['keys'][DeviceTree]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][DeviceTree]['iv'])
+              data['keys'][DeviceTree]['iv'] + Fore.RESET)
     elif imagefile == "RecoveryMode":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][RecoveryMode]['filename'])
+              data['keys'][RecoveryMode]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][RecoveryMode]['key'])
+              data['keys'][RecoveryMode]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][RecoveryMode]['iv'])
+              data['keys'][RecoveryMode]['iv'] + Fore.RESET)
     elif imagefile == "GlyphPlugin":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][GlyphPlugin]['filename'])
+              data['keys'][GlyphPlugin]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][GlyphPlugin]['key'])
+              data['keys'][GlyphPlugin]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][GlyphPlugin]['iv'])
+              data['keys'][GlyphPlugin]['iv'] + Fore.RESET)
     elif imagefile == "UpdateRamdisk":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][UpdateRamdisk]['filename'])
+              data['keys'][UpdateRamdisk]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][UpdateRamdisk]['key'])
+              data['keys'][UpdateRamdisk]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][UpdateRamdisk]['iv'])
+              data['keys'][UpdateRamdisk]['iv'] + Fore.RESET)
     elif imagefile == "RestoreRamdisk":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][RestoreRamdisk]['filename'])
+              data['keys'][RestoreRamdisk]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][RestoreRamdisk]['key'])
+              data['keys'][RestoreRamdisk]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][RestoreRamdisk]['iv'])
+              data['keys'][RestoreRamdisk]['iv'] + Fore.RESET)
     elif imagefile == "RootFS":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][RootFS]['filename'])
-        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][RootFS]['key'])
+              data['keys'][RootFS]['filename'] + Fore.RESET)
+        print(Fore.RESET + "Key: " + Fore.GREEN + data['keys'][RootFS]['key'] + Fore.RESET)
     elif imagefile == "KernelCache":
         print(Fore.RESET + "Filename: " + Fore.GREEN +
-              data['keys'][KernelCache]['filename'])
+              data['keys'][KernelCache]['filename'] + Fore.RESET)
         print(Fore.RESET + "Key: " + Fore.GREEN +
-              data['keys'][KernelCache]['key'])
+              data['keys'][KernelCache]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
-              data['keys'][KernelCache]['iv'])
+              data['keys'][KernelCache]['iv'] + Fore.RESET)
     exit()
 
 

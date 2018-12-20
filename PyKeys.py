@@ -7,6 +7,7 @@ import time
 import PyKeyModule
 import UpdateCheck
 import zipfile
+import argparse
 from consolemenu import *
 from consolemenu.items import FunctionItem, SubmenuItem, CommandItem
 from colorama import init
@@ -18,16 +19,23 @@ from colorama import Fore, Back, Style
 ______________________________________________
 
 -- This script will be improved over time
-
-
 '''
 
 global identifier
-
 global iosversion
-
-
 menu = ConsoleMenu("PyKeys", "Firmware Key Grabber.")
+
+
+parser = argparse.ArgumentParser()
+#parser.prog = 'PyKeys'
+parser.description = "Grab Firmware Keys from ipsw.me's API."
+parser.epilog = "If you like my software, Follow Me on Github (32Bites) and Twitter (@CorruptByte)."
+parser.add_argument('-i', '--iosversion', help="iOS version. (ex, 7.1.2)")
+parser.add_argument('-f', '--imagefile', help="Image file for keys. (ex, RootFS, AppleLogo, BatteryCharging0, etc.) CASESENSITIVE")
+parser.add_argument('-d', '--identifier', help="The device identifier. (ex, iPhone3,3)")
+parser.add_argument('-m', '--menu', help='Use the interactive menu.', action='store_true')
+#parser.parse_args(['--help'])
+namespace = parser.parse_args(sys.argv[1:])
 
 
 def showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm, ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm):
@@ -51,6 +59,15 @@ def showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm, ibo
 
 
 def mainmenu():
+    init()
+    #UpdateCheck.inititalize()
+    #UpdateCheck.getLocalVersion()
+    idt = input("Device Identifier (For example: iPhone3,3)" + Fore.YELLOW + " ! " + Fore.RESET)
+    identifier = idt
+    iver = input("iOS Version (For example: 7.1.2)" + Fore.YELLOW + " ! " + Fore.RESET)
+    iosversion = iver
+
+
     validimages = ['AppleLogo', 'RecoveryMode', 'BatteryLow1', 'BatteryLow0', 'BatteryFull', 'BatteryCharging0',
                    'BatteryCharging1', 'LLB', 'iBoot', 'iBEC', 'iBSS', 'DeviceTree', 'GlyphPlugin', 'RootFS', 'UpdateRamdisk', 'RestoreRamdisk']
 
@@ -114,15 +131,10 @@ def mainmenu():
 
 # Standard Python Stuff
 if __name__ == "__main__":
-    init()
     UpdateCheck.inititalize()
     UpdateCheck.getLocalVersion()
-    idt = input("Device Identifier (For example: iPhone3,3)" +
-                Fore.YELLOW + " ! " + Fore.RESET)
-    identifier = idt
-    iver = input("iOS Version (For example: 7.1.2)" +
-                 Fore.YELLOW + " ! " + Fore.RESET)
-    iosversion = iver
-    print(iosversion)
-    #print(identifier + " " + iosversion)
-    mainmenu()
+
+    if(namespace.menu) :
+        mainmenu()
+    if (namespace.menu == False) :
+        PyKeyModule.getkeys(namespace.imagefile, namespace.identifier, namespace.iosversion)
