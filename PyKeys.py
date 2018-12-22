@@ -38,7 +38,7 @@ parser.add_argument('-m', '--menu', help='Use the interactive menu.', action='st
 namespace = parser.parse_args(sys.argv[1:])
 
 
-def showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm, ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm):
+def showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm, ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm, glyphchargingm):
     # Add Options to menu
     menu.append_item(applelogom)
     menu.append_item(recoverymodem)
@@ -54,12 +54,12 @@ def showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm, ibo
     menu.append_item(rtfsm)
     menu.append_item(updramm)
     menu.append_item(resramm)
+    menu.append_item(glyphchargingm)
     # Show menu
     menu.show()
 
 
 def mainmenu():
-    init()
     #UpdateCheck.inititalize()
     #UpdateCheck.getLocalVersion()
     idt = input("Device Identifier (For example: iPhone3,3)" + Fore.YELLOW + " ! " + Fore.RESET)
@@ -69,7 +69,7 @@ def mainmenu():
 
 
     validimages = ['AppleLogo', 'RecoveryMode', 'BatteryLow1', 'BatteryLow0', 'BatteryFull', 'BatteryCharging0',
-                   'BatteryCharging1', 'LLB', 'iBoot', 'iBEC', 'iBSS', 'DeviceTree', 'GlyphPlugin', 'RootFS', 'UpdateRamdisk', 'RestoreRamdisk']
+                   'BatteryCharging1', 'LLB', 'iBoot', 'iBEC', 'iBSS', 'DeviceTree', 'GlyphPlugin', 'RootFS', 'UpdateRamdisk', 'RestoreRamdisk', 'GlyphCharging']
 
     updateStuff = ['Enable Update Check', 'Disable Update Check']
 
@@ -102,18 +102,19 @@ def mainmenu():
                            validimages[12], identifier, iosversion])
     resramm = FunctionItem(validimages[13], PyKeyModule.getkeys, [
                            validimages[13], identifier, iosversion])
+    glyphchargingm = FunctionItem(validimages[14], PyKeyModule.getkeys, [validimages[14], identifier, iosversion])
 
     if (UpdateCheck.gupdate == "false"):
         updatecheckm = FunctionItem(updateStuff[0], UpdateCheck.enableUpdate)
         menu.append_item(updatecheckm)
         showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
-                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm, glyphchargingm)
 
     elif (UpdateCheck.gupdate == "true"):
         updatecheckm = FunctionItem(updateStuff[1], UpdateCheck.disableUpdate)
         menu.append_item(updatecheckm)
         showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
-                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm, glyphchargingm)
 
     elif (UpdateCheck.gupdate == "update"):
         updatecheckm = FunctionItem(updateStuff[1], UpdateCheck.disableUpdate)
@@ -122,19 +123,22 @@ def mainmenu():
             "Download Update", UpdateCheck.downloadUpdate)
         menu.append_item(updatedownloadm)
         showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
-                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm, glyphchargingm)
 
     else:
         showmenu(applelogom, recoverymodem, batlow1m, batlow0m, batchar1m, llbm,
-                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm)
+                 ibootm, ibecm, ibssm, devtreem, glyphplugm, rtfsm, updramm, resramm, glyphchargingm)
 
 
 # Standard Python Stuff
 if __name__ == "__main__":
     UpdateCheck.inititalize()
     UpdateCheck.getLocalVersion()
+    init()
 
     if(namespace.menu) :
         mainmenu()
-    if (namespace.menu == False) :
+    elif (namespace.menu == False and len(sys.argv) > 1) :
         PyKeyModule.getkeys(namespace.imagefile, namespace.identifier, namespace.iosversion)
+    else:
+        print("No arguments passed.\nExited.")

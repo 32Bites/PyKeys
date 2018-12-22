@@ -19,6 +19,25 @@ ______________________________________________
 
 '''
 
+global AppleLogo
+global iLLB
+global iBEC
+global iBoot
+global iBSS
+global RecoveryMode
+global BatteryLow0
+global BatteryLow1
+global BatteryFull
+global BatteryCharging1
+global BatteryCharging0
+global DeviceTree
+global KernelCache
+global GlyphPlugin
+global UpdateRamdisk
+global RestoreRamdisk
+global RootFS
+global GlyphCharging
+
 
 def getkeys(imagefile, identifier, iosversion):
     urlToGetBuildId = 'https://api.ipsw.me/v3/' + identifier + '/' + iosversion + '/buildid'
@@ -118,7 +137,7 @@ def getkeys(imagefile, identifier, iosversion):
 
         # Get KernelCache Number from JSON
         for i in range(0, itemlen, 1):
-            if data['keys'][i]['image'] == "KernelCache":
+            if data['keys'][i]['image'] == "KernelCache" or data['keys'][i]['image'] == "Kernelcache":
                 KernelCache = i
 
         # Get GlyphPlugin Number from JSON
@@ -138,8 +157,11 @@ def getkeys(imagefile, identifier, iosversion):
 
         # Get RootFS Number from JSON
         for i in range(0, itemlen, 1):
-            if data['keys'][i]['image'] == "RootFS":
+            if data['keys'][i]['image'] == "RootFS" or data['keys'][i]['image'] == "RootFileSystem":
                 RootFS = i
+        for i in range(0, itemlen, 1):
+            if data['keys'][i]['image'] == "GlyphCharging":
+                GlyphCharging = i
 
     except TypeError:
         KeyErrorFunc(identifier, iosversion)
@@ -261,6 +283,15 @@ def getkeys(imagefile, identifier, iosversion):
               data['keys'][KernelCache]['key'] + Fore.RESET)
         print(Fore.RESET + "IV: " + Fore.GREEN +
               data['keys'][KernelCache]['iv'] + Fore.RESET)
+    elif imagefile == "GlyphCharging":
+        print(Fore.RESET + "Filename: " + Fore.GREEN +
+              data['keys'][GlyphCharging]['filename'] + Fore.RESET)
+        print(Fore.RESET + "Key: " + Fore.GREEN +
+              data['keys'][GlyphCharging]['key'] + Fore.RESET)
+        print(Fore.RESET + "IV: " + Fore.GREEN +
+              data['keys'][GlyphCharging]['iv'] + Fore.RESET)
+    else:
+        print(Fore.RED + "Unknown image type.\nIf this is not an error on your end, DM 𝓥𝓥𝓲𝓹𝓮𝓻𝓖𝓾𝔂#1915 on Discord." + Fore.RESET)
     exit()
 
 
