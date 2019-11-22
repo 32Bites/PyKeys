@@ -22,5 +22,5 @@ Enter in the details, then select an option from the selection menu.
 ```$ pip3 install -r requirements.txt```
 
 # Credits
-* Noah Scott (@CorruptByte)
+* Noah Scott (@TheNoahParty)
 * Just A Penguin 
